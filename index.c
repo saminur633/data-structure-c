@@ -21,6 +21,39 @@ int linear_search(int arr[],int n, int x){
            return 0;
 
       }
+// binary_search
+#include<stdio.h>
+int binary_search(int A[],int n,int data)
+{
+    int l,r,mid;
+    l=0;
+    r = n-1;
+    while(l<=r){
+        mid = (l+r)/2;
+        if(data== A[mid]){
+            return mid;
+        }else if (data > A[mid]){
+             l = mid+1;
+        }else{
+            r = mid-1;
+        }
+    }
+    return -1;
+}
+int main()
+{
+    int A[] = {5,7,9,12,15,20,24,27,33,40,50,65,72};
+    int n = sizeof(A) / sizeof(A[0]);
+    int data = 33;
+    int result = binary_search(A,n,data);
+    if(result!= -1){
+        printf("Element found at index %d\n" , result);
+    }else{
+         printf("Element is not found in the array :");
+    }
+    return 0;
+}
+
 // selection sort
 #include <stdio.h>
 
@@ -55,3 +88,67 @@ int main() {
 
     return 0;
 }
+
+// Bubble sort
+#include <stdio.h>
+
+void bubble_sort(int A[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-1-i; j++) {
+            if (A[j] > A[j+1]) {
+                int temp = A[j];
+                A[j] = A[j+1];
+                A[j+1] = temp;
+            }
+        }
+    }
+}
+
+void print_array(int A[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int A[] = {22, 14, 12, 18, 9};
+    int n = sizeof(A) / sizeof(A[0]);
+    printf("Unsorted Array: ");
+    print_array(A, n);
+    bubble_sort(A, n);
+    printf("Bubble Sort: \n");
+    print_array(A, n);
+    return 0;
+}
+// Insertion sort
+#include <stdio.h>
+
+void insertion_sort(int A[], int n) {
+    for (int i = 1; i < n; i++) {
+        int temp = A[i];
+        int j = i - 1;
+        while (j >= 0 && A[j] > temp) {
+            A[j + 1] = A[j];
+            j--;
+        }
+        A[j + 1] = temp;
+    }
+}
+
+void print_array(int A[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int A[] = {31, 43, 26, 29, 12};
+    int n = sizeof(A) / sizeof(A[0]);
+    insertion_sort(A, n);
+    print_array(A, n);
+
+    return 0;
+}
+
