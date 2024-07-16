@@ -151,4 +151,68 @@ int main() {
 
     return 0;
 }
+// stack 
+#include <stdio.h>
+#define MAX_STACK 10
+
+typedef struct {
+    int top;
+    int data[MAX_STACK];
+} Stack;
+
+void push(Stack *s, int x) {
+    if (s->top == MAX_STACK - 1) {
+        printf("Overflow\n");
+    } else {
+        s->top++;
+        s->data[s->top] = x;
+    }
+}
+
+void pop(Stack *s) {
+    if (s->top == -1) {
+        printf("Underflow\n");
+    } else {
+        printf("Popped: %d\n", s->data[s->top]);
+        s->top--;
+    }
+}
+
+void top(Stack *s) {
+    if (s->top == -1) {
+        printf("Stack is empty\n");
+    } else {
+        printf("Top: %d\n", s->data[s->top]);
+    }
+}
+
+void display(Stack *s) {
+    if (s->top == -1) {
+        printf("Stack is empty\n");
+    } else {
+        printf("Stack contents: ");
+        for (int i = 0; i <= s->top; i++) {
+            printf("%d ", s->data[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    Stack my_stack;
+    my_stack.top = -1; // Initialize top to -1, indicating an empty stack
+
+    push(&my_stack, 1);
+    push(&my_stack, 2);
+    push(&my_stack, 3);
+
+    display(&my_stack);
+
+    pop(&my_stack);
+    display(&my_stack);
+
+    top(&my_stack);
+
+    return 0;
+}
 
